@@ -57,15 +57,20 @@ namespace FlightJournal.Web.Migrations.FlightContext
               new TrainingLessonCategory { TrainingLessonCategoryId = 4, TrainingLessonCategoryName = "Startmetode", Enabled = true }
             );
 
-            int sortOrder = 1;
+            int trainingLessonSortOrder = 1;
             context.TrainingLessons.AddOrUpdate(
-                new TrainingLesson { TrainingLessonId = sortOrder++, Identifier = "A-0 (1)", Description = "Grundlæggende kenskab til svæveflyet", SortOrder = sortOrder++, Enabled = true, RequiresFlight = false, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
-                new TrainingLesson { TrainingLessonId = sortOrder++, Identifier = "A-0 (2)", Description = "Flyvesikkerhed", SortOrder = sortOrder++, Enabled = true, RequiresFlight = false, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
-                new TrainingLesson { TrainingLessonId = sortOrder++, Identifier = "A-0 (-)", Description = "Safety Management System - DSvU", SortOrder = sortOrder++, Enabled = true, RequiresFlight = false, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
-                new TrainingLesson { TrainingLessonId = sortOrder++, Identifier = "A-1 (3)", Description = "Tilvænningsflyvning forberedelse", SortOrder = sortOrder++, Enabled = true, RequiresFlight = false, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
-                new TrainingLesson { TrainingLessonId = sortOrder++, Identifier = "A-1 (4)", Description = "Tilvænningsflyvning", SortOrder = sortOrder++, Enabled = true, RequiresFlight = true, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
-                new TrainingLesson { TrainingLessonId = sortOrder++, Identifier = "A-2 (5)", Description = "Grundlæggende kenskab til svæveflyet", SortOrder = sortOrder++, Enabled = true, RequiresFlight = true, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 }
+                new TrainingLesson { TrainingLessonId = trainingLessonSortOrder++, Identifier = "A-0 (1)", Description = "Grundlæggende kenskab til svæveflyet", SortOrder = trainingLessonSortOrder++, Enabled = true, RequiresFlight = false, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
+                new TrainingLesson { TrainingLessonId = trainingLessonSortOrder++, Identifier = "A-0 (2)", Description = "Flyvesikkerhed", SortOrder = trainingLessonSortOrder++, Enabled = true, RequiresFlight = false, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
+                new TrainingLesson { TrainingLessonId = trainingLessonSortOrder++, Identifier = "A-0 (-)", Description = "Safety Management System - DSvU", SortOrder = trainingLessonSortOrder++, Enabled = true, RequiresFlight = false, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
+                new TrainingLesson { TrainingLessonId = trainingLessonSortOrder++, Identifier = "A-1 (3)", Description = "Tilvænningsflyvning forberedelse", SortOrder = trainingLessonSortOrder++, Enabled = true, RequiresFlight = false, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
+                new TrainingLesson { TrainingLessonId = trainingLessonSortOrder++, Identifier = "A-1 (4)", Description = "Tilvænningsflyvning", SortOrder = trainingLessonSortOrder++, Enabled = true, RequiresFlight = true, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 },
+                new TrainingLesson { TrainingLessonId = trainingLessonSortOrder++, Identifier = "A-2 (5)", Description = "Grundlæggende kenskab til svæveflyet", SortOrder = trainingLessonSortOrder++, Enabled = true, RequiresFlight = true, RequiresFlightInstructorApproval = true, TrainingLessonCategoryId = 1 }
                 );
+
+            int exerciseSortOrder = 1;
+            context.NonFlyingExercises.AddOrUpdate(
+                new NonFlyingExercise { ExerciseId = exerciseSortOrder++, Description = "Svæveflyets karakteristika", SortOrder = exerciseSortOrder, Enabled = true, TrainingLessonId = 1 },
+                new NonFlyingExercise { ExerciseId = exerciseSortOrder++, Description = "Cockpit, instrumenter og udstyr", SortOrder = exerciseSortOrder, Enabled = true, TrainingLessonId = 1 });
         }
 
         internal static void InitializeDemoFlights(Models.FlightContext context)

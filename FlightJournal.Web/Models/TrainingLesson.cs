@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using FlightJournal.Web.Translations;
+using System.Linq;
 
 namespace FlightJournal.Web.Models
 {
@@ -17,6 +19,9 @@ namespace FlightJournal.Web.Models
         [LocalizedDisplayName("Lesson description")]
         public string Description { get; set; }
 
+        public virtual ICollection<FlyingExercise> FlyingExercises { get; set; }
+        public virtual ICollection<NonFlyingExercise> NonFlyingExercises { get; set; }
+
         [LocalizedDisplayName("Requires flight")]
         public bool RequiresFlight { get; set; } = true;
 
@@ -28,5 +33,24 @@ namespace FlightJournal.Web.Models
 
         [LocalizedDisplayName("Sort order")]
         public int SortOrder { get; set; }
+
+        [LocalizedDisplayName("In progress")]
+        public bool InProgress
+        {
+            get
+            {
+                return !Completed
+                    && (FlyingExercises.Any(e => e.Trained || e.Completed) || NonFlyingExercises.Any(e => e.Completed));
+            }
+        }
+
+        [LocalizedDisplayName("Completed")]
+        public bool Completed
+        {
+            get
+            {
+                return FlyingExercises.All(e => e.Completed) && NonFlyingExercises.All(e => e.Completed);
+            }
+        }
     }
 }

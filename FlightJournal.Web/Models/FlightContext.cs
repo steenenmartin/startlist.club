@@ -29,6 +29,8 @@ namespace FlightJournal.Web.Models
         //public DbSet<PilotLogEntryVersionHistory> PilotLogEntryVersions { get; set; }
         public DbSet<TrainingLessonCategory> TrainingLessonCategories { get; set; }
         public DbSet<TrainingLesson> TrainingLessons { get; set; }
+        public DbSet<FlyingExercise> FlyingExercises { get; set; }
+        public DbSet<NonFlyingExercise> NonFlyingExercises { get; set; }
 
         /// <summary>
         /// Throw Validation Errors from the Entity as actual Exceptions
